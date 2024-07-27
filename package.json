@@ -4,14 +4,16 @@
   "description": "",
   "type": "module",
   "main": "index.js",
-  "scripts": {
-    "start": "nodemon index.js"
+"scripts": {
+    "start": "nodemon index.js",
+    "postinstall": "prisma generate"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@google/generative-ai": "^0.14.1",
-    "@prisma/client": "^5.15.0",
+    "@prisma/client": "latest",
+    "@prisma/cli": "latest",
     "axios": "^1.7.2",
     "aztro-js": "^0.1.5",
     "bcrypt": "^5.1.1",
