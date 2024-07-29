@@ -15,15 +15,12 @@ const transporter = nodemailer.createTransport({
 });
 
 async function getLocationFromAddress(address) {
-  const url = `https://nominatim.openstreetmap.org/search?addressdetails=1&q=${
-    address
-  }&format=json`;
+  const url = `https://nominatim.openstreetmap.org/search?addressdetails=1&q=${encodeURIComponent(address)}&format=json`;
   console.log(address);
   console.log(url);
 
-
   try {
-    console.log('Guru')
+    console.log('Guru');
     const response = await axios.get(url);
     console.log(response);
     console.log('Guru');
