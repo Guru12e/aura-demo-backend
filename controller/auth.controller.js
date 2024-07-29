@@ -23,6 +23,7 @@ async function getLocationFromAddress(address) {
 
 
   try {
+    console.log('Guru')
     const response = await axios.get(url);
     console.log(response);
     console.log('Guru');
