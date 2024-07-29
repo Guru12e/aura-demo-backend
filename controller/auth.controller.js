@@ -15,9 +15,9 @@ const transporter = nodemailer.createTransport({
 });
 
 async function getLocationFromAddress(address) {
-  const url = `https://nominatim.openstreetmap.org/search?addressdetails=1&q=${encodeURIComponent(
+  const url = `https://nominatim.openstreetmap.org/search?addressdetails=1&q=${
     address
-  )}&format=json`;
+  }&format=json`;
   console.log('Hiii');
 
   try {
