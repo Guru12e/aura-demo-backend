@@ -18,6 +18,7 @@ async function getLocationFromAddress(address) {
   const url = `https://nominatim.openstreetmap.org/search?addressdetails=1&q=${encodeURIComponent(
     address
   )}&format=json`;
+  console.log('Hiii');
 
   try {
     const response = await axios.get(url);
