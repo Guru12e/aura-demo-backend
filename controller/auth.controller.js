@@ -141,9 +141,9 @@ export const addDetails = async (req, res) => {
   const { name, dob, location } = req.body;
   console.log(location);
   let locations = await getLocationFromAddress(location);
+  console.log(locations);
   const latitude = locations[0];
   const longtitude = locations[1];
-  console.log(locations);
   console.log(latitude);
   console.log(longtitude);
 
