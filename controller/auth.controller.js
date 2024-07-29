@@ -19,6 +19,8 @@ async function getLocationFromAddress(address) {
     address
   }&format=json`;
   console.log(address);
+  console.log(url);
+
 
   try {
     const response = await axios.get(url);
