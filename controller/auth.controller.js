@@ -21,12 +21,16 @@ async function getLocationFromAddress(address) {
 
   try {
     console.log('Guru');
-    const response = await axios.get(url);
-    console.log(response);
-    console.log('Guru');
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    
+    const data = await response.json();
 
-    if (response.data.length > 0) {
-      const { lat, lon } = response.data[0];
+    if (data.length > 0) {
+      const { lat, lon } = data[0];
       console.log(lat);
       console.log(lon);
 
