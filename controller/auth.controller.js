@@ -24,6 +24,8 @@ async function getLocationFromAddress(address) {
 
     if (response.data.length > 0) {
       const { lat, lon } = response.data[0];
+      console.log(lat);
+      console.log(lon);
 
       return [lat, lon];
     } else {
