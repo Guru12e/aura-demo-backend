@@ -140,6 +140,11 @@ export const addDetails = async (req, res) => {
   let locations = await getLocationFromAddress(location);
   const latitude = locations[0];
   const longtitude = locations[1];
+  console.log(locations);
+  console.log(latitude);
+  console.log(longtitude);
+
+
 
   try {
     const response = await prisma.user.update({
