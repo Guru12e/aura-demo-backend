@@ -139,6 +139,7 @@ export const login = async (req, res) => {
 export const addDetails = async (req, res) => {
   const id = req.params.id;
   const { name, dob, location } = req.body;
+  console.log(location);
   let locations = await getLocationFromAddress(location);
   const latitude = locations[0];
   const longtitude = locations[1];
