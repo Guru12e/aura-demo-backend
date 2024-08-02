@@ -5,6 +5,7 @@ import {
   login,
   otpVerify,
   register,
+  changeDetails,
 } from "../controller/auth.controller.js";
 
 const router = express.Router();
@@ -14,5 +15,6 @@ router.post("/login", login);
 router.post("/otpVerify", otpVerify);
 router.post("/addDetails/:id", addDetails);
 router.post("/getUser", getUser);
+router.post("/changeTime",changeDetails);
 
 export default router;
