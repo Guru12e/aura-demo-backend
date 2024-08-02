@@ -54,5 +54,5 @@ export const housePrediction = async (req, res) => {
 export const lifePrediction = async (req, res) => {
   const {data} = req.body;
   console.log(data[0]);
-  res.status(200).send(data[0]);
+  res.status(200).send(data[0]["planets"]);
 };
