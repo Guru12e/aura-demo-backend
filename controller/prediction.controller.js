@@ -50,3 +50,9 @@ export const housePrediction = async (req, res) => {
 
   res.status(200).send(response);
 };
+
+export const lifePrediction = async (req, res) => {
+  const details = req.body;
+
+  console.log(details);
+};
