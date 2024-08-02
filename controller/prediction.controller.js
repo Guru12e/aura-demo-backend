@@ -39,7 +39,7 @@ export const dailyPrediction = async (req, res) => {
     ],
   });
 
-  return response.choices[0].message.content.toString();
+  return res.status(200).send(response.choices[0].message.content.toString());
 };
 
 
