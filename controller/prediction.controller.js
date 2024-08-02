@@ -1,4 +1,9 @@
 import houseDetails from "../lib/openAi.js";
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 const months = [
   "January",
@@ -19,69 +24,24 @@ export const dailyPrediction = async (req, res) => {
   const { sign } = req.body;
   const date = new Date();
   const year = date.getFullYear();
-  const month = date.getMonth();
+  const month = months[date.getMonth()];
   const day = date.getDay();
 
-  // const response = await run(
-  //   `My horoscope sign is ${sign} create moon based prediction on ${month}/${day}/${year} about my today in paragraph`
-  // );
+  const prompt = `Based on the provided Rasi: ${sign},  generate today's prediction Today  ${month}/${day}/${year}, covering Important Life Segments in Layman Words,  and Provide s Pratical Action Plan and Positive Affirmation for today Write Prediction in Single Pharagraph in 100  words`;
+  const res = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
 
-  res.status(200).json(response);
+    messages: [
+      {
+        role: "user",
+        content: prompt,
+      },
+    ],
+  });
+
+  return res.choices[0].message.content.toString();
 };
 
-export const healthPrediction = async (req, res) => {
-  const { sign } = req.body;
-  const date = new Date();
-  const year = date.getFullYear();
-  const monthNum = date.getMonth();
-  const day = date.getDay();
-
-  // const response = await run(
-  //   `My daily horoscope Prediction for ${sign} sign on ${months[monthNum]} month ${year} in Indian Standard time zone about my Health in layman terms `
-  // );
-
-  // const remediesResponse = await run(
-  //   `My daily horoscope Prediction for ${sign} sign on ${months[monthNum]} month ${year} in Indian Standard time zone about Remedies in my Health in layman terms`
-  // );
-
-  res.status(200).json({ predicit: response, rc: remediesResponse });
-};
-
-export const wealthPrediction = async (req, res) => {
-  const { sign } = req.body;
-  const date = new Date();
-  const year = date.getFullYear();
-  const monthNum = date.getMonth();
-  const day = date.getDay();
-
-  // const response = await run(
-  //   `My daily horoscope Prediction for ${sign} sign on ${months[monthNum]} month ${year} in Indian Standard time zone about my Wealth,financial status,work in layman terms `
-  // );
-
-  // const remediesResponse = await run(
-  //   `My daily horoscope Prediction for ${sign} sign on ${months[monthNum]} month ${year} in Indian Standard time zone about Remedies in my Wealth,financial status,work in layman terms`
-  // );
-
-  res.status(200).json({ predicit: response, rc: remediesResponse });
-};
-
-export const emotionPrediction = async (req, res) => {
-  const { sign } = req.body;
-  const date = new Date();
-  const year = date.getFullYear();
-  const monthNum = date.getMonth();
-  const day = date.getDay();
-
-  // const response = await run(
-  //   `My daily horoscope Prediction for ${sign} sign on ${months[monthNum]} month ${year} in Indian Standard time zone about my Emotional,pressure,happiness in layman terms `
-  // );
-
-  // const remediesResponse = await run(
-  //   `My daily horoscope Prediction for ${sign} sign on ${months[monthNum]} month ${year} in Indian Standard time zone about Remedies in my Emotional,pressure,happiness in layman terms`
-  // );
-
-  res.status(200).json({ predicit: response, rc: remediesResponse });
-};
 
 export const housePrediction = async (req, res) => {
   const { position, sign, house } = req.body;
