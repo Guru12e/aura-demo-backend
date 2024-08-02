@@ -28,7 +28,7 @@ export const dailyPrediction = async (req, res) => {
   const day = date.getDay();
 
   const prompt = `Based on the provided Rasi: ${sign},  generate today's prediction Today  ${month}/${day}/${year}, covering Important Life Segments in Layman Words,  and Provide s Pratical Action Plan and Positive Affirmation for today Write Prediction in Single Pharagraph in 100  words`;
-  const res = await openai.chat.completions.create({
+  const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
 
     messages: [
@@ -39,7 +39,7 @@ export const dailyPrediction = async (req, res) => {
     ],
   });
 
-  return res.choices[0].message.content.toString();
+  return response.choices[0].message.content.toString();
 };
 
 
