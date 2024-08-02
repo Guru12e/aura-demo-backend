@@ -55,5 +55,5 @@ export const lifePrediction = async (req, res) => {
   const {data} = req.body;
   console.log('hiii');
   console.log(data);
-  res.status(200).send(details);
+  res.status(200).send(data);
 };
