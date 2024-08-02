@@ -51,8 +51,24 @@ export const housePrediction = async (req, res) => {
   res.status(200).send(response);
 };
 
+const getString = (planets, house, position) => {
+  if (planets.length == 0) {
+    return `I have ${house} in ${position}`;
+  } else {
+    return `I have ${planets} in ${house} in ${position}`;
+  }
+};
+
 export const lifePrediction = async (req, res) => {
-  const {data} = req.body;
-  console.log(data[0]);
-  res.status(200).send(data[0]["planets"]);
+  const { data } = req.body;
+
+  prompt = "";
+
+  data.forEach((da, i) => {
+    prompt += getString(da["planets"], da["house"], i + 1);
+  });
+
+  console.log(prompt);
+
+  res.status(200).send(prompt);
 };
