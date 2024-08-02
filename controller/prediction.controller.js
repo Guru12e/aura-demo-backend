@@ -53,22 +53,33 @@ export const housePrediction = async (req, res) => {
 
 const getString = (planets, house, position) => {
   if (planets.length == 0) {
-    return `I have ${house} in ${position}`;
+    return `I have ${house} in ${position} position.`;
   } else {
-    return `I have ${planets} in ${house} in ${position}`;
+    return `I have ${planets} in ${house} in ${position}.`;
   }
 };
 
 export const lifePrediction = async (req, res) => {
   const { data } = req.body;
 
-  let text = "";
+  let prompt = "My Birth Details on bith Chart:";
 
   data.forEach((da, i) => {
-    text += getString(da["planets"], da["house"], i + 1);
+    prompt += getString(da["planets"], da["house"], i + 1);
   });
 
-  console.log(text);
+  prompt += "What will be my life prediction according to this details?";
 
-  res.status(200).send(text);
+  const response = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
+
+    messages: [
+      {
+        role: "user",
+        content: prompt,
+      },
+    ],
+  });
+
+  res.status(200).send(response.choices[0].message.content.toString());
 };
