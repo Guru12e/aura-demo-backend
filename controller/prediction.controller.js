@@ -62,13 +62,13 @@ const getString = (planets, house, position) => {
 export const lifePrediction = async (req, res) => {
   const { data } = req.body;
 
-  prompt = "";
+  text = "";
 
   data.forEach((da, i) => {
-    prompt += getString(da["planets"], da["house"], i + 1);
+    text += getString(da["planets"], da["house"], i + 1);
   });
 
-  console.log(prompt);
+  console.log(text);
 
-  res.status(200).send(prompt);
+  res.status(200).send(text);
 };
