@@ -189,3 +189,26 @@ export const getUser = async (req, res) => {
     res.status(500).json({ message: "not a user" });
   }
 };
+
+export const changeDetails = async (req, res) => {
+  const { id, time , location} = req.body;
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    const dob = user.dob;
+
+    dob = dob.split(0, 12);
+    console.log(time);
+    console.log(user.dob);
+
+    res.status(200).send(time);
+  } catch (err) {
+    res.status(500).json({ message: "not found" });
+  }
+};
+
