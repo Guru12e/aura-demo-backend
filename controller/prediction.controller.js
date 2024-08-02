@@ -53,7 +53,7 @@ export const housePrediction = async (req, res) => {
 
 export const lifePrediction = async (req, res) => {
   const details = req.body;
-
+  console.log('hiii);
   console.log(details);
   res.status(200).send(details);
 };
