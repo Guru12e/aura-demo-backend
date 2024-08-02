@@ -135,7 +135,7 @@ export const horoscopeChart = async (req, res) => {
     chart_config: {
       font_family: "Mallanna",
       hide_time_location: "False",
-      hide_outer_planets: "False",
+      hide_outer_planets: "True",
       chart_style: "south_india",
       native_name: name,
       native_name_font_size: "20px",
@@ -193,7 +193,7 @@ export const navamsaChart = async (req, res) => {
     chart_config: {
       font_family: "Mallanna",
       hide_time_location: "False",
-      hide_outer_planets: "False",
+      hide_outer_planets: "True",
       chart_style: "south_india",
       native_name: name,
       native_name_font_size: "20px",
