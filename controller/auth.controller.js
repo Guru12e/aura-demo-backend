@@ -202,7 +202,7 @@ export const changeDetails = async (req, res) => {
 
     console.log(user);
 
-    const dob = user.dob;
+    const dob = await user.dob;
 
     dob = dob.split(0, 12);
     console.log(time);
