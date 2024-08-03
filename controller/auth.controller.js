@@ -146,15 +146,9 @@ export const login = async (req, res) => {
 export const addDetails = async (req, res) => {
   const id = req.params.id;
   const { name, dob, location } = req.body;
-  console.log(location);
   let locations = await getLocationFromAddress(location);
-  console.log(locations);
   const latitude = locations[0];
   const longtitude = locations[1];
-  console.log(latitude);
-  console.log(longtitude);
-
-
 
   try {
     const response = await prisma.user.update({
@@ -194,17 +188,15 @@ export const changeDetails = async (req, res) => {
   const id = req.params.id;
   const { time, location } = req.body;
 
-  console.log(id);
-  console.log(time, location);
-
   try {
     const user = await prisma.user.findUnique({ where: { id } });
+    let locations = await getLocationFromAddress(location);
+    const latitude = locations[0];
+    const longtitude = locations[1];
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
-    console.log(user);
 
     let dob = user.dob;
     let timeonly;
@@ -214,14 +206,21 @@ export const changeDetails = async (req, res) => {
       timeonly = time.split(' ')[1];
     }
 
-    console.log(timeonly);
-    console.log(dob);
-
     const updateDob = dob + timeonly;
 
-    console.log(updateDob);
+    const response = await prisma.user.update({
+      where: { id },
+      data: {
+        dob: updateDob,
+        location,
+        latitude,
+        longtitude,
+      },
+    });
+    
+    const { password, ...userInfo } = response;
 
-    res.status(200).send(updateDob);
+    return res.status(200).json(userInfo);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
