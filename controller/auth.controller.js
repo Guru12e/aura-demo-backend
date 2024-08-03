@@ -106,9 +106,6 @@ export const otpVerify = async (req, res) => {
 
 export const login = async (req, res) => {
   const { email, pass } = req.body;
-  console.log(email);
-
-  console.log(email);
 
   try {
     const user = await prisma.user.findUnique({
@@ -228,7 +225,7 @@ export const sendFeedBack = async (req,res) => {
       name: "admin@Aura",
       address: process.env.USER,
     },
-    to: "guruvijay1925@gmail.com",
+    to: "palanitce@gmail.com",
     subject: `Feed Back from ${name} and adddress:${email}`,
     text: `Feed Back from Name:${name} address:${email}`,
 
@@ -245,4 +242,6 @@ export const sendFeedBack = async (req,res) => {
         <p style="text-align:center">${feedback}</p>
       </div>`,
   });
+
+  return res.status(200).json({"message":"success"});
 }
