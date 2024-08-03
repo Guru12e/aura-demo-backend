@@ -207,10 +207,11 @@ export const changeDetails = async (req, res) => {
     console.log(user);
 
     let dob = user.dob;
+    let timeonly;
 
     if (typeof dob === 'string') {
       dob = dob.substring(0, 11); 
-      const timeonly = time.split(' ')[1];
+      timeonly = time.split(' ')[1];
     }
 
     console.log(timeonly);
