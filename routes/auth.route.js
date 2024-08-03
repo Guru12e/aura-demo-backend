@@ -15,6 +15,6 @@ router.post("/login", login);
 router.post("/otpVerify", otpVerify);
 router.post("/addDetails/:id", addDetails);
 router.post("/getUser", getUser);
-router.post("/changeTime",changeDetails);
+router.post("/changeTime/:id",changeDetails);
 
 export default router;
