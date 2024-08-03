@@ -210,7 +210,7 @@ export const changeDetails = async (req, res) => {
 
     if (typeof dob === 'string') {
       dob = dob.substring(0, 11); 
-      time = time.substring(0, 11); 
+      time = time.substring(11,); 
     }
 
     console.log(time);
