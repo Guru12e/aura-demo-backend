@@ -68,7 +68,7 @@ export const lifePrediction = async (req, res) => {
     prompt += getString(da["planets"], da["house"], i + 1);
   });
 
-  prompt += "What will be my life prediction according to this details?";
+  prompt += "Based on the above planetary Position and Horoscope Detail  Provide Overall  detail Life Insights and Suggestions and do not give disclaimer message like i am not an astrologer Consult with professional astrologer  provide only astrology Insights Contents";
 
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
