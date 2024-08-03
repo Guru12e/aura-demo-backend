@@ -217,11 +217,11 @@ export const changeDetails = async (req, res) => {
     console.log(timeonly);
     console.log(dob);
 
-    updateDob = dob + timeonly;
+    const updateDob = dob + timeonly;
 
-    console.log(dob);
+    console.log(updateDob);
 
-    res.status(200).send(dob);
+    res.status(200).send(updateDob);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
