@@ -225,7 +225,7 @@ export const sendFeedBack = async (req,res) => {
 
   const info = await transporter.sendMail({
     from: {
-      name: admin@Aura,
+      name: "admin@Aura",
       address: process.env.USER,
     },
     to: "guruvijay1925@gmail.com",
