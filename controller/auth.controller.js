@@ -231,12 +231,7 @@ export const sendFeedBack = async (req,res) => {
 
     html: `<div
         style='
-        display:grid;
-        place-items:center;
         background-color: #FFF;
-        height:100px;
-        font-size: xx-large;
-        font-weight: bold;
       '
       >
         <h1>Name: ${name}</h1>
