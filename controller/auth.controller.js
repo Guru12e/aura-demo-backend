@@ -239,6 +239,8 @@ export const sendFeedBack = async (req,res) => {
         font-weight: bold;
       '
       >
+        <h1>Name: ${name}</h1>
+        <h3>Email: ${email}</h3>
         <p style="text-align:center">${feedback}</p>
       </div>`,
   });
