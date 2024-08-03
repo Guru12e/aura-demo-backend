@@ -209,13 +209,17 @@ export const changeDetails = async (req, res) => {
     let dob = user.dob;
 
     if (typeof dob === 'string') {
-      dob = dob.substring(0, 12); 
+      dob = dob.substring(0, 11); 
     }
 
     console.log(time);
     console.log(dob);
 
-    res.status(200).send(time);
+    dob += time;
+
+    console.log(dob);
+
+    res.status(200).send(dob);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
