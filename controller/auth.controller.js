@@ -16,11 +16,8 @@ const transporter = nodemailer.createTransport({
 
 async function getLocationFromAddress(address) {
   const url = `https://nominatim.openstreetmap.org/search?addressdetails=1&q=${encodeURIComponent(address)}&format=json`;
-  console.log(address);
-  console.log(url);
 
   try {
-    console.log('Guru');
     const response = await fetch(url);
     
     if (!response.ok) {
@@ -31,8 +28,6 @@ async function getLocationFromAddress(address) {
 
     if (data.length > 0) {
       const { lat, lon } = data[0];
-      console.log(lat);
-      console.log(lon);
 
       return [lat, lon];
     } else {
@@ -75,7 +70,6 @@ export const register = async (req, res) => {
 export const otpVerify = async (req, res) => {
   const { email } = req.body;
 
-  console.log(email);
   const OTP = Math.floor(1000 + Math.random() * 9000);
 
   const user = await prisma.user.findUnique({ where: { email } });
@@ -86,7 +80,7 @@ export const otpVerify = async (req, res) => {
 
   const info = await transporter.sendMail({
     from: {
-      name: "admin@motorAct",
+      name: "admin@Aura",
       address: process.env.USER,
     },
     to: email,
@@ -107,7 +101,6 @@ export const otpVerify = async (req, res) => {
       </div>`,
   });
 
-  console.log(OTP);
   return res.status(200).json(OTP);
 };
 
@@ -227,4 +220,29 @@ export const changeDetails = async (req, res) => {
   }
 };
 
+export const sendFeedBack = async (req,res) => {
+  const {name, email , feedback} = req.body;
 
+  const info = await transporter.sendMail({
+    from: {
+      name: name,
+      address: email,
+    },
+    to: process.env.USER,
+    subject: `Feed Back from ${name}`,
+    text: `Feed Back from Name:${name} address:${email}`,
+
+    html: `<div
+        style='
+        display:grid;
+        place-items:center;
+        background-color: #FFF;
+        height:100px;
+        font-size: xx-large;
+        font-weight: bold;
+      '
+      >
+        <p style="text-align:center">${feedback}</p>
+      </div>`,
+  });
+}
