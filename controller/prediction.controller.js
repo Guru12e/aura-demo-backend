@@ -27,7 +27,7 @@ export const dailyPrediction = async (req, res) => {
   const month = months[date.getMonth()];
   const day = date.getDay();
 
-  const prompt = `Based on the provided Rasi: ${sign} and ${nakshatra} nakshatra,  generate today's prediction Today  ${month}/${day}/${year}, covering Important Life Segments in Layman Words,  and Provide s Pratical Action Plan and Positive Affirmation for today Write Prediction in Single Pharagraph in 100  words`;
+  const prompt = `Based on the provided Rasi: ${sign} and ${nakshatra} nakshatra,  generate today's prediction Today  ${day}th ${month} ${year}, covering Important Life Segments in Layman Words,  and Provide s Pratical Action Plan and Positive Affirmation for today Write Prediction in Single Pharagraph in 100  words`;
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
 
