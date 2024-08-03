@@ -200,6 +200,8 @@ export const changeDetails = async (req, res) => {
   try {
     const user = await prisma.user.findUnique({ where: { id } });
 
+    console.log(user);
+
     const dob = user.dob;
 
     dob = dob.split(0, 12);
