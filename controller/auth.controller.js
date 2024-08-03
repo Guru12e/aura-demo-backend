@@ -218,27 +218,24 @@ export const changeDetails = async (req, res) => {
 };
 
 export const sendFeedBack = async (req,res) => {
-  const {name, email , feedback} = req.body;
+  const {name, email, feedback} = req.body;
 
   const info = await transporter.sendMail({
     from: {
-      name: "admin@Aura",
+      name: "Aura Support",
       address: process.env.USER,
     },
     to: "palanitce@gmail.com",
-    subject: `Feed Back from ${name} and adddress:${email}`,
-    text: `Feed Back from Name:${name} address:${email}`,
-
-    html: `<div
-        style='
-        background-color: #FFF;
-      '
-      >
-        <h1>Name: ${name}</h1>
-        <h3>Email: ${email}</h3>
-        <p style="text-align:center">${feedback}</p>
+    subject: `Feedback from ${name} (${email})`,
+    text: `Feedback from Name: ${name} Email: ${email}\n\nFeedback: ${feedback}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; color: #333; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+        <h1 style="color: #333; font-size: 24px; margin-bottom: 10px;">Feedback from ${name}</h1>
+        <p style="font-size: 16px; margin-bottom: 20px;"><strong>Email:</strong> ${email}</p>
+        <p style="font-size: 16px; line-height: 1.5;">${feedback}</p>
       </div>`,
   });
+
 
   return res.status(200).json({"message":"success"});
 }
