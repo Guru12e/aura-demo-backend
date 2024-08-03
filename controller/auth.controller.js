@@ -192,25 +192,34 @@ export const getUser = async (req, res) => {
 
 export const changeDetails = async (req, res) => {
   const id = req.params.id;
-  const { time , location} = req.body;
+  const { time, location } = req.body;
 
   console.log(id);
-  console.log(time,location);
+  console.log(time, location);
 
   try {
     const user = await prisma.user.findUnique({ where: { id } });
 
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
     console.log(user);
 
-    const dob = await user.dob;
+    let dob = user.dob;
 
-    dob = dob.split(0, 12);
+    if (typeof dob === 'string') {
+      dob = dob.substring(0, 12); 
+    }
+
     console.log(time);
-    console.log(user.dob);
+    console.log(dob);
 
     res.status(200).send(time);
   } catch (err) {
-    res.status(500).json({ message: "not found" });
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
+
 
