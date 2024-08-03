@@ -194,6 +194,9 @@ export const changeDetails = async (req, res) => {
   const id = req.params.id;
   const { time , location} = req.body;
 
+  console.log(id);
+  console.log(time,location);
+
   try {
     const user = await prisma.user.findUnique({ where: { id } });
 
