@@ -225,11 +225,11 @@ export const sendFeedBack = async (req,res) => {
 
   const info = await transporter.sendMail({
     from: {
-      name: name,
-      address: email,
+      name: admin@Aura,
+      address: process.env.USER,
     },
-    to: process.env.USER,
-    subject: `Feed Back from ${name}`,
+    to: "guruvijay1925@gmail.com",
+    subject: `Feed Back from ${name} and adddress:${email}`,
     text: `Feed Back from Name:${name} address:${email}`,
 
     html: `<div
