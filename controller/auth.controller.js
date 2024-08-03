@@ -191,14 +191,11 @@ export const getUser = async (req, res) => {
 };
 
 export const changeDetails = async (req, res) => {
-  const { id, time , location} = req.body;
+  const id = req.params.id;
+  const { time , location} = req.body;
 
   try {
-    const user = await prisma.user.findUnique({
-      where: {
-        id: id,
-      },
-    });
+    const user = await prisma.user.findUnique({ where: { id } });
 
     const dob = user.dob;
 
